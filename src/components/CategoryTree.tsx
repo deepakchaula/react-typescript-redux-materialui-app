@@ -22,7 +22,7 @@ const CategoryTree: React.FC<Props> = ({ categories }) => (
         <ListItemText primary={category.name} />
         {category.subcategories.map((subcategory) => (
           <List key={subcategory.id} component="div" disablePadding>
-            <ListItem button component={RouterLink} to={`/subcategory/${subcategory.id}`}>
+            <ListItem>
               <ListItemText primary={subcategory.name} />
             </ListItem>
           </List>
