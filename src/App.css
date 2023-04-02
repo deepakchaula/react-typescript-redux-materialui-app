@@ -7,3 +7,9 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.App li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

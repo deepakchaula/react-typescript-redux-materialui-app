@@ -14,7 +14,8 @@ export const getCategories = (posts: Post[]): Category[] => {
   
   for (const userId in groupedPosts) {
     const userPosts = groupedPosts[userId];
-    const categoryName = `Category ${parseInt(userId) + 1}`;
+    const categoryName = `Cat ${parseInt(userId)}`;
+    const categoryIdTmp = `${parseInt(userId)}`;
     const category = categories.find((c) => c.name === categoryName);
     if (!category) {
       categories.push({
@@ -23,7 +24,7 @@ export const getCategories = (posts: Post[]): Category[] => {
         subcategories: [],
       });
     }
-    const subcategoryName = `Subcategory ${parseInt(userId) + 1}_${subcategories.length + 1}`;
+    const subcategoryName = `Subcat ${parseInt(categoryIdTmp)}_${subcategories.length + 1}`;
     const subcategory = {
       id: subcategories.length + 1,
       name: subcategoryName,
