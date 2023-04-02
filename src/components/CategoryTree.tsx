@@ -18,11 +18,11 @@ type Props = {
 const CategoryTree: React.FC<Props> = ({ categories }) => (
   <List>
     {categories.map((category) => (
-      <ListItem key={category.id} button component={RouterLink} to={`/category/${category.id}`}>
+      <ListItem key={category.id} >
         <ListItemText primary={category.name} />
         {category.subcategories.map((subcategory) => (
           <List key={subcategory.id} component="div" disablePadding>
-            <ListItem>
+            <ListItem button component={RouterLink} to={`/subcategory/${subcategory.id}`}>
               <ListItemText primary={subcategory.name} />
             </ListItem>
           </List>

@@ -1,10 +1,13 @@
 import React from 'react';
+import { Route, Routes } from "react-router-dom";
 import './App.css';
 import Header from "./components/Header";
-import CategoryTree from "./components/CategoryTree";
 import { getCategories } from "./utils/categories";
 import axios from "axios";
 import { Post } from "./models/post";
+import CircularProgress from '@mui/material/CircularProgress';
+const CategoryTree = React.lazy(() => import("./components/CategoryTree"));
+// const SubcategoryNews = React.lazy(() => import("./components/CategoryTree"));
 
 function App() {
   const [posts, setPosts] = React.useState<Post[]>([]);
@@ -25,10 +28,29 @@ function App() {
 
   const categories = getCategories(posts);
 
+  type SubcategoryNewsProps = {
+    posts: Post[];
+  }
+  
+  const SubcategoryNews: React.FC<SubcategoryNewsProps> = ({ posts }) => {
+    return (
+      <div>
+        {posts.map((post) => (
+          <div key={post.id}>{post.title}</div>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div className="App">
       <Header />
-      <CategoryTree categories={categories} />
+      <React.Suspense fallback={<CircularProgress />} key="suspense">
+        <Routes>
+          <Route path="/" element={<CategoryTree categories={categories} />} />
+          <Route path="/subcategory/:id" element={<SubcategoryNews posts={posts} />} />
+        </Routes>
+      </React.Suspense>
     </div>
   );
 }
