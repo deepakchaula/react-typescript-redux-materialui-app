@@ -24,7 +24,7 @@ export const getCategories = (posts: Post[]): Category[] => {
         subcategories: [],
       });
     }
-    const subcategoryName = `Subcat ${parseInt(categoryIdTmp)}_${subcategories.length + 1}`;
+    const subcategoryName = `Subcat ${parseInt(categoryIdTmp)}_${1}`;
     const subcategory = {
       id: subcategories.length + 1,
       name: subcategoryName,
